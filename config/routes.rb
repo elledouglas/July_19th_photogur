@@ -7,6 +7,11 @@ get 'pictures' => 'pictures#index'
 post 'pictures' => 'pictures#create'
 get 'pictures/new' => 'pictures#new'
 
+
+get 'pictures/:id/edit' => "pictures#edit"
+ patch 'pictures/:id' => "pictures#update"
+
+
 get 'pictures/:id' => 'pictures#show'
 
 end

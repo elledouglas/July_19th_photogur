@@ -4,6 +4,9 @@ class PicturesController < ApplicationController
   @pictures = Picture.all
 end
 
+def edit
+   @picture = Picture.find(params[:id])
+ end
   def show
     @picture = Picture.find(params[:id])
   end
@@ -11,6 +14,14 @@ end
   def new
     @picture = Picture.new
   end
+
+  def update
+     @picture = Picture.find(params[:id])
+
+     @picture.title = params[:picture][:title]
+     @picture.artist = params[:picture][:artist]
+     @picture.url = params[:picture][:url]
+
 
   def create
     @picture = Picture.new
