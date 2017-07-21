@@ -1,7 +1,8 @@
 class PicturesController < ApplicationController
 
   def index
-  @pictures = Picture.all
+   @most_recent_pictures = Picture.most_recent_five
+   @pictures_created_in_year = Picture.pictures_created_in_year
 end
 
 def edit
@@ -21,7 +22,7 @@ def edit
      @picture.title = params[:picture][:title]
      @picture.artist = params[:picture][:artist]
      @picture.url = params[:picture][:url]
-
+end
 
   def create
     @picture = Picture.new
@@ -29,14 +30,13 @@ def edit
     @picture.title = params[:picture][:title]
     @picture.artist = params[:picture][:artist]
     @picture.url = params[:picture][:url]
-
-
+  end
     if @picture.save
       # if the picture gets saved, generate a get request to "/pictures" (the index)
       redirect_to "/pictures"
     else
       # otherwise render new.html.erb
       render :new
-    end
+
   end
-   end
+end

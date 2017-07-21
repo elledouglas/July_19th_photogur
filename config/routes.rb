@@ -15,4 +15,3 @@ get 'pictures/:id/edit' => "pictures#edit"
 get 'pictures/:id' => 'pictures#show'
 
 end
-TEST 
