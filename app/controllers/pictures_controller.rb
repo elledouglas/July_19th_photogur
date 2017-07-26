@@ -2,41 +2,45 @@ class PicturesController < ApplicationController
 
   def index
    @most_recent_pictures = Picture.most_recent_five
-   @pictures_created_in_year = Picture.pictures_created_in_year
-end
+  end
 
 def edit
-   @picture = Picture.find(params[:id])
- end
-  def show
+  end
+
+def show
     @picture = Picture.find(params[:id])
-  end
+    end
 
-  def new
+
+def new
     @picture = Picture.new
   end
 
-  def update
-     @picture = Picture.find(params[:id])
 
-     @picture.title = params[:picture][:title]
-     @picture.artist = params[:picture][:artist]
-     @picture.url = params[:picture][:url]
-end
-
-  def create
-    @picture = Picture.new
-
+def update
+    @picture = Picture.find(params[:id])
     @picture.title = params[:picture][:title]
     @picture.artist = params[:picture][:artist]
-    @picture.url = params[:picture][:url]
-  end
-    if @picture.save
-      # if the picture gets saved, generate a get request to "/pictures" (the index)
-      redirect_to "/pictures"
-    else
-      # otherwise render new.html.erb
-      render :new
 
-  end
+   end
+
+
+def create
+    @picture = Picture.new
+    @picture.title = params[:picture][:title]
+    @picture.artist = params[:picture][:artist]
+    if @picture.save
+      redirect_to 'pictures#index'
+    else
+      render :new
+end
+end
+
+def self.most_recent(limit)
+  if limit.present?
+  order(created_at: :desc).limit(limit)
+end
+end
+  #this was from Freds class
+
 end

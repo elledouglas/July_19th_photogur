@@ -1,0 +1,20 @@
+#rails generate migration AddConcerts
+
+classAddConcerts < ActiverRecord::Migration[5.1]
+
+def change
+
+create_table :concerts do |t|
+t.string :name
+t.dateline :played_at
+
+t.timestamps
+
+end
+  end
+
+end
+
+db:migrate
+
+db:rollback ( will undo the most recent change you did to your database)
